@@ -1,16 +1,12 @@
-import React from 'react'
+const UP_TOKEN = 'up:yeah:02OiBvK62qeqOvkdpUfUTA1NnRuRJwtcO9XNjQL18tblgNYplADUGyjUaaxu50hrNW3TeRcT1jRAK5xYnIU2wcklRJCj264A10wwLUSzsSfTWsJYeSshATaScY66hnTs'; // This is your personal access token
+import axios from 'axios';
+const endpoint = "/accounts"
+const baseURL = "https://api.up.com.au/api/v1"
 
-function main() {
-  
-    async function f() {
-      const request = await fetch('up:yeah:tTutXVZKi31wmDytvxZZWg0zqDEanueIhb6YOe0cOVLlahdcoeHaD9WtdJIMKDKzgHaMPP7w4m5iM0TK7KP32Vfy9exwyQzQotjVixNvgX4yr5llDNi9Wd7bhxYn8915')
-      console.log(request)
-      return 'a';
-      }
-      
-      f().then(console.log("hello world"));
-    
-    return f();
+const get = async () => {
+      var result = await axios.get(baseURL + endpoint, {headers: {Authorization: 'Bearer ' + UP_TOKEN}})
+      console.log(result.data)
+      return result
 }
 
-export default main
+get()
