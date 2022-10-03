@@ -5,8 +5,16 @@ const baseURL = "https://api.up.com.au/api/v1"
 
 const get = async () => {
       var result = await axios.get(baseURL + endpoint, {headers: {Authorization: 'Bearer ' + UP_TOKEN}})
-      console.log(result.data)
-      return result
+      // console.log(result.data)
+      return result.data.data
+}
+const accounts = async (data) => {
+  let accounts = await data
+  accounts.forEach(account => {
+    console.log(account.attributes.displayName)
+  })
+  // console.log(accounts)
 }
 
-get()
+var tester = get();
+accounts(tester)
