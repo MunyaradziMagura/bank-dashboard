@@ -4,21 +4,32 @@ import Server from './components/Server'
 import Accounts from './components/Accounts';
 function App() {
   const [id, setID] = useState();
-  const [accountsList, setAccountsList] = useState(["none"])
+  const [accountsList, setAccountsList] = useState([])
+  const [selectedAccount, setSelectedAccount] = useState({})
+  const [data, setData] = useState([{}])
+
   async function UpBank(_token, _endpoint){
     const connection = await new Server(_token,_endpoint);
 
-    // get data 
-    const data = await connection.getUpData()
+    // get account data 
+    const accountData = await connection.getUpData().then()
+    setData(accountData)
     // get accounts
-    const getAccounts = await connection.accounts(data)
-    setAccountsList(getAccounts)
+    setAccountsList(await connection.accounts(accountData))
   }
 
   useEffect(() => {
     UpBank(id, '/accounts')
 
   },[id])
+
+  useEffect(() => {
+   console.log(selectedAccount)
+   console.log(data)
+
+  //  UpBank(id, '/accounts')
+
+  },[selectedAccount])
   
   
 
@@ -46,7 +57,7 @@ function App() {
     {/* generates cards for each account */}
     <div className="row row-cols-1 row-cols-md-3 g-4">
       {accountsList.map(account => (
-        <Accounts account={account}/>
+        <Accounts accountID={account[0]} account={account[1]} select={setSelectedAccount} />
       ))}
     </div>
 

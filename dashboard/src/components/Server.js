@@ -20,11 +20,13 @@ export default class Server {
     // get accounts
     accounts = async (_data) => {
         let data = await _data
-        let accounts = []
-        data.forEach(account => {
-          accounts.push(account.attributes.displayName)
+        let accounts = [] 
+        data.forEach((account) => {
+          // index 0 stores the id and index 1 stores the display name 
+          accounts.push([account.id, account.attributes.displayName])
+
         })
-        return accounts
+        return accounts // returns an array of arrays 
       }
 
 }
