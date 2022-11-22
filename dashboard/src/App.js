@@ -5,7 +5,10 @@ import Accounts from './components/Accounts';
 function App() {
   const [id, setID] = useState();
   const [accountsList, setAccountsList] = useState([])
-  const [selectedAccount, setSelectedAccount] = useState({})
+  const [selectedAccountID, setSelectedAccountID] = useState("")
+
+  const [selectedAccountData, setSelectedAccountData] = useState({})
+
   const [data, setData] = useState([{}])
 
   async function UpBank(_token, _endpoint){
@@ -24,12 +27,11 @@ function App() {
   },[id])
 
   useEffect(() => {
-   console.log(selectedAccount)
-   console.log(data)
+  //  return data for the clicked on account
+  setSelectedAccountData(data.find(account => account.id == selectedAccountID))
 
-  //  UpBank(id, '/accounts')
-
-  },[selectedAccount])
+  console.log(selectedAccountData)
+  },[selectedAccountID])
   
   
 
@@ -57,7 +59,7 @@ function App() {
     {/* generates cards for each account */}
     <div className="row row-cols-1 row-cols-md-3 g-4">
       {accountsList.map(account => (
-        <Accounts accountID={account[0]} account={account[1]} select={setSelectedAccount} />
+        <Accounts accountID={account[0]} account={account[1]} select={setSelectedAccountID} />
       ))}
     </div>
 
