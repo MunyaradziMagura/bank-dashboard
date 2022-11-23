@@ -44,7 +44,13 @@ export default class Server {
 export class TransactionCleaner {
   // convert iso dates to normal dates 
   cleanDates(_data) {
-    console.log(_data);
+    let transactions = []
+    _data.forEach(e => {
+      e.attributes.createdAt = e.attributes.createdAt.substring(0, 10)
+      transactions.push(e)
+    })
+    console.log(transactions)
+    return transactions
   }
   // remember to clear raw data outputs
 
