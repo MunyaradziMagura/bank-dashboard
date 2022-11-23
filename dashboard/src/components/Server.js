@@ -22,7 +22,7 @@ export default class Server {
     accountTransactions = async (accountID) => {
       if (accountID == null || accountID == undefined) return 'No Data'
       const accountTransactionResults = await axios.get(this.baseURL + this.endpoint + `/${accountID}/transactions`, {headers: {Authorization: 'Bearer ' + this.UP_TOKEN}})
-      return accountTransactionResults
+      return accountTransactionResults.data.data
     }
 
     // get accounts
@@ -38,5 +38,22 @@ export default class Server {
       }
 
 }
+
+ 
+
+export class TransactionCleaner {
+  // convert iso dates to normal dates 
+  cleanDates(_data) {
+    console.log(_data);
+  }
+  // remember to clear raw data outputs
+
+  // group by dates creating a 2d array containing transaction objects
+  groupby(_data) {
+    console.log('groupby !');
+  }
+}
+
+
 
 

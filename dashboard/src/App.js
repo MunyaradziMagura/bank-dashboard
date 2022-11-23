@@ -1,13 +1,15 @@
 import './App.css';
 import {useState, useEffect} from 'react'
 import Server from './components/Server'
-import Accounts from './components/Accounts';
+import Accounts from './components/Accounts'
 import Navigation from './components/Navigation'
+import Transactions from './components/Transactions'
 function App() {
-  const [id, setID] = useState();
-  const [accountsList, setAccountsList] = useState([])
-  const [selectedAccountID, setSelectedAccountID] = useState("")
-  const [selectedAccountData, setSelectedAccountData] = useState({})
+
+  const [id, setID] = useState();  // this signifies the upbank API id 
+  const [accountsList, setAccountsList] = useState([]) // a list of all account names on the bank account 
+  const [selectedAccountID, setSelectedAccountID] = useState(0) // id of the selected account is set when the account div is clicked
+  const [selectedAccountData, setSelectedAccountData] = useState({}) // all data about a selected account
   const [transactionsByAccount, setTransactionsByAccount] = useState([])
   const [data, setData] = useState([{}])
 
@@ -27,11 +29,8 @@ function App() {
         // set transaction history
         setTransactionsByAccount(accountTransactionHistory)
         break;
-
     }
-
   }
-
   useEffect(() => {
     UpBank(id, '/accounts', 'accounts')
 
@@ -40,9 +39,8 @@ function App() {
   useEffect(() => {
   //  return data for the clicked on account
   setSelectedAccountData(data.find(account => account.id == selectedAccountID))
-  
+
   UpBank(id, '/accounts', 'transactionXaccount', selectedAccountID)
-    console.log(transactionsByAccount)
   },[selectedAccountID])
   
   
@@ -66,7 +64,13 @@ function App() {
 
     </div>
     <div className="col-12">
-      <div className="p-3 border bg-light">account content</div>
+      <div className="p-3 border bg-light">
+      <div className="row">
+      <div className="col-4"><Transactions transactionData={transactionsByAccount}/></div>
+        <div className="col-8">this will contain graphs and plots of transactions</div>
+      </div>
+
+      </div>
     </div>
     </div>
     </div>
