@@ -13,10 +13,18 @@ export default class Server {
     }
     // get json full data
     getUpData = async () => {
-        var result = await axios.get(this.baseURL + this.endpoint, {headers: {Authorization: 'Bearer ' + this.UP_TOKEN}})
+        const result = await axios.get(this.baseURL + this.endpoint, {headers: {Authorization: 'Bearer ' + this.UP_TOKEN}})
         // console.log(result.data)
         return result.data.data
     }
+
+    // get transactions by account 
+    accountTransactions = async (accountID) => {
+      if (accountID == null || accountID == undefined) return 'No Data'
+      const accountTransactionResults = await axios.get(this.baseURL + this.endpoint + `/${accountID}/transactions`, {headers: {Authorization: 'Bearer ' + this.UP_TOKEN}})
+      return accountTransactionResults
+    }
+
     // get accounts
     accounts = async (_data) => {
         let data = await _data
