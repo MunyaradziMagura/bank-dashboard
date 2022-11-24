@@ -67,7 +67,7 @@ function App() {
     <div className="col-12">
       <div className="p-3 border bg-light">
       <div className="row">
-      <div className="col-4"><Transactions transactionData={transactionsByAccount}/></div>
+      <div className="col-4"><h1>Weekly Transactions</h1><Transactions transactionData={transactionsByAccount}/></div>
         <div className="col-8"><Charts/></div>
       </div>
 
