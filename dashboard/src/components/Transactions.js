@@ -19,7 +19,7 @@ export default function Transactions({transactionData}, props) {
   <div className="col-8">
     <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" className="scrollspy-example" tabIndex="0" style={{maxWidth: '100%', maxHeight: '100%', height: '50%'}}>
       {Object.keys(transactionHistory).map((transactionDate, index) => (
-        <div  id={`${transactionDate}`} className="card text-dark bg-warning mb-3" style={{maxWidth: '100%'}}>
+        <div  id={`${transactionDate}`} className="card text-dark bg-warning mb-3" style={{maxWidth: '100%'}} key={index + 'nav'}>
   <div className="card-header bg-transparent border-warning">Transactions on <b>{transactionDate}</b></div>
   <div className="card-body text-success">
   <table className="table">  <thead>
@@ -30,8 +30,8 @@ export default function Transactions({transactionData}, props) {
     </tr>
   </thead>
   <tbody>
-  {transactionHistory[`${transactionDate}`].map(transactionsOnDate => (
-    <tr id={`${index}`}>
+  {transactionHistory[`${transactionDate}`].map((transactionsOnDate, transactionIndex) => (
+    <tr id={`${index}`} key={transactionIndex}>
       <td>{
         getTime(transactionsOnDate.attributes.settledAt)
       }</td>
@@ -41,7 +41,6 @@ export default function Transactions({transactionData}, props) {
   ))}
     </tbody>
     </table>
-
   </div>
 </div>
         ))}

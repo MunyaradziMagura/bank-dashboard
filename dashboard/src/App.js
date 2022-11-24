@@ -4,6 +4,7 @@ import Server from './components/Server'
 import Accounts from './components/Accounts'
 import Navigation from './components/Navigation'
 import Transactions from './components/Transactions'
+import Charts from './components/Charts'
 function App() {
 
   const [id, setID] = useState();  // this signifies the upbank API id 
@@ -67,7 +68,7 @@ function App() {
       <div className="p-3 border bg-light">
       <div className="row">
       <div className="col-4"><Transactions transactionData={transactionsByAccount}/></div>
-        <div className="col-8">this will contain graphs and plots of transactions</div>
+        <div className="col-8"><Charts/></div>
       </div>
 
       </div>
