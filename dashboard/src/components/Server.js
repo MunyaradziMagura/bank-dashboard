@@ -50,7 +50,7 @@ export class TransactionCleaner {
     })
     return transactions
   }
-  // remember to clear raw data outputs
+  
 
   // group by dates creating a 2d array containing transaction objects
   groupby(_data) {
