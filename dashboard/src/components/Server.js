@@ -14,7 +14,6 @@ export default class Server {
     // get json full data
     getUpData = async () => {
         const result = await axios.get(this.baseURL + this.endpoint, {headers: {Authorization: 'Bearer ' + this.UP_TOKEN}})
-        // console.log(result.data)
         return result.data.data
     }
 
