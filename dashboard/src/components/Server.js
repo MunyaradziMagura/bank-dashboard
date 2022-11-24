@@ -39,7 +39,6 @@ export default class Server {
 
 }
 
- 
 
 export class TransactionCleaner {
   // convert iso dates to normal dates 
@@ -49,14 +48,20 @@ export class TransactionCleaner {
       e.attributes.createdAt = e.attributes.createdAt.substring(0, 10)
       transactions.push(e)
     })
-    console.log(transactions)
     return transactions
   }
   // remember to clear raw data outputs
 
   // group by dates creating a 2d array containing transaction objects
   groupby(_data) {
-    console.log('groupby !');
+    // convert object into an object where each key represents the date and value is an array of objects containing transaction details
+    const groupedTransactions = _data.reduce((transaction, item) => {
+      transaction[item.attributes.createdAt] = transaction[item.attributes.createdAt] ?? [];
+      transaction[item.attributes.createdAt].push(item)
+      return transaction
+    },{})
+
+    return groupedTransactions // returns {date: [{transaction}, {transaction}]}
   }
 }
 
