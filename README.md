@@ -29,6 +29,7 @@ Download the project then run the following commands
 
 **Server:** Node, Axios 
 
+**Design** [wireframe](https://wireframe.cc/mJVXeU) 
 
 ## Authors
 
