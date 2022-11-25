@@ -2,7 +2,7 @@
 # Up Bank API Dashboard
 
 This full stack banking administrator dashboard Web Application.
-This application allows users to visualises, interact-with, and garner insight into their banking habits and trends; On an account by account basis and over the longevity of each account. Through an easy to use, dynamic and responsive interface.
+This application allows users to visualises, interact-with, and garner insight into their banking, spending and deposit habits and trends; On an account by account basis and over the longevity of each account. Through an easy to use, dynamic and responsive interface.
 
 ## Live Demo
 
