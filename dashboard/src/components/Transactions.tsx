@@ -17,8 +17,8 @@ export default function Transactions({transactionData}, props) {
     <TransactionDateLinks transactionHistory={transactionHistory}/>
   </div>
   <div className="col-8">
-    <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" className="scrollspy-example" tabIndex="0" style={{maxWidth: '100%', maxHeight: '100%', height: '50%'}}>
-      {Object.keys(transactionHistory).map((transactionDate, index) => (
+    <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" className="scrollspy-example" tabIndex=0 style={{maxWidth: '100%', maxHeight: '100%', height: '50%'}}>
+      {Object.keys(transactionHistory).map((transactionDate: any, index: number) => (
         <div  id={`${transactionDate}`} className="card text-dark bg-warning mb-3" style={{maxWidth: '100%'}} key={index + 'nav'}>
   <div className="card-header bg-transparent border-warning">Transactions on <b>{transactionDate}</b></div>
   <div className="card-body text-success">
@@ -30,7 +30,7 @@ export default function Transactions({transactionData}, props) {
     </tr>
   </thead>
   <tbody>
-  {transactionHistory[`${transactionDate}`].map((transactionsOnDate, transactionIndex) => (
+  {transactionHistory[`${transactionDate}`].map((transactionsOnDate: any, transactionIndex: number) => (
     <tr id={`${index}`} key={transactionIndex}>
       <td>{
         getTime(transactionsOnDate.attributes.settledAt)

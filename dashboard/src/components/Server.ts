@@ -1,8 +1,12 @@
 import axios from 'axios';
 
 export default class Server {
+    UP_TOKEN: string;
+    endpoint: string;
+    baseURL: string;
+    
     // set token 
-    constructor(_token, _endpoint) {
+    constructor(_token: string, _endpoint: string) {
         this.UP_TOKEN = _token;
         this.endpoint = _endpoint // "/accounts" 
         this.baseURL = "https://api.up.com.au/api/v1"
@@ -27,7 +31,7 @@ export default class Server {
     // get accounts
     accounts = async (_data) => {
         let data = await _data
-        let accounts = [] 
+        let accounts: any[] = [] 
         data.forEach((account) => {
           // index 0 stores the id and index 1 stores the display name 
           accounts.push([account.id, account.attributes.displayName])
@@ -42,7 +46,7 @@ export default class Server {
 export class TransactionCleaner {
   // convert iso dates to normal dates 
   cleanDates(_data) {
-    let transactions = []
+    let transactions: any[] = []
     _data.forEach(e => {
       e.attributes.createdAt = e.attributes.createdAt.substring(0, 10)
       transactions.push(e)
