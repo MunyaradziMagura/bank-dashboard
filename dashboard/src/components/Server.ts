@@ -23,7 +23,7 @@ export default class Server {
 
   // get transactions by account 
   accountTransactions = async (accountID: string | null | undefined) => {
-    if (accountID == null || accountID == undefined) return 'No Data'
+    if (accountID === null || accountID === undefined) return 'No Data'
     const accountTransactionResults = await axios.get(this.baseURL + this.endpoint + `/${accountID}/transactions`, { headers: { Authorization: 'Bearer ' + this.UP_TOKEN } })
     return accountTransactionResults.data.data
   }
