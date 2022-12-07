@@ -55,7 +55,7 @@ function App() {
 
     <div className="ms-5 me-5">
 
-      <Navigation setID={setID} />
+      <Navigation {...{ setID: setID }} />
 
       {/* main page content */}
       <div className="row">
