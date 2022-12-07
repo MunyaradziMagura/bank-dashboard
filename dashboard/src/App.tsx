@@ -1,5 +1,5 @@
 import './App.css';
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import Server from './components/Server'
 import Accounts from './components/Accounts'
 import Navigation from './components/Navigation'
@@ -15,10 +15,10 @@ function App() {
   const [transactionsByAccount, setTransactionsByAccount] = useState<any>([])
   const [data, setData] = useState<any>([{}])
 
-  async function UpBank(_token: any, _endpoint: any, _callType: any, _accountID: any = null){
-    const connection = await new Server(_token,_endpoint);
+  async function UpBank(_token: any, _endpoint: any, _callType: any, _accountID: any = null) {
+    const connection = await new Server(_token, _endpoint);
 
-    switch(_callType){
+    switch (_callType) {
       case 'accounts':
         // get account data 
         const accountData = await connection.getUpData()
@@ -34,54 +34,57 @@ function App() {
       default:
         console.log("Account type not selected");
         break;
-      
+
     }
   }
   useEffect(() => {
     UpBank(id, '/accounts', 'accounts')
 
-  },[id])
+  }, [id])
 
   useEffect(() => {
-  //  return data for the clicked on account
-  setSelectedAccountData(data.find((account: any) => account.id == selectedAccountID))
+    //  return data for the clicked on account
+    setSelectedAccountData(data.find((account: any) => account.id == selectedAccountID))
 
-  UpBank(id, '/accounts', 'transactionXaccount', selectedAccountID)
-  },[selectedAccountID])
-  
-  
+    UpBank(id, '/accounts', 'transactionXaccount', selectedAccountID)
+  }, [selectedAccountID])
+
+
 
   return (
-    
+
     <div className="ms-5 me-5">
-      
-      <Navigation setID={setID}/>
+
+      <Navigation setID={setID} />
 
       {/* main page content */}
       <div className="row">
-    <div className="row gy-3">
-    <div className="col">
-    {/* generates cards for each account */}
-    <div className="row row-cols-1 row-cols-md-3 g-4 text-center">
-      {accountsList.map((account: any)  => (
-        <Accounts accountID={account[0]} account={account[1]} select={setSelectedAccountID} />
-      ))}
+        <div className="row gy-3">
+          <div className="col">
+            {/* generates cards for each account */}
+            <div className="row row-cols-1 row-cols-md-3 g-4 text-center">
+              {accountsList.map((account: any) => (
+                <>
+                  <Accounts {...{ accountID: account[0], account: account[1], select: setSelectedAccountID }} />
+                  {console.log(account[0])}
+                </>
+              ))}
+            </div>
+
+          </div>
+          <div className="col-12">
+            <div className="p-3 border bg-light">
+              <div className="row">
+                <div className="col-4"><h1>Weekly Transactions</h1><Transactions transactionData={transactionsByAccount} /></div>
+                <div className="col-8"><Charts /></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    </div>
-    <div className="col-12">
-      <div className="p-3 border bg-light">
-      <div className="row">
-      <div className="col-4"><h1>Weekly Transactions</h1><Transactions transactionData={transactionsByAccount}/></div>
-        <div className="col-8"><Charts/></div>
-      </div>
-
-      </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    
   );
 }
 
