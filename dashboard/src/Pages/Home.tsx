@@ -1,8 +1,7 @@
-import { Fragment } from 'react'
 import MyLogo from '../components/Logo'
 import { useState, useEffect } from 'react'
-import { hover } from '@testing-library/user-event/dist/hover'
 import styled from 'styled-components'
+import { motion } from 'framer-motion';
 
 const groupStyle: any = {
   left:'50%', 
@@ -39,7 +38,16 @@ export default function Home() {
 
   return (
     <>
-      <MyLogo width='10%' positionX={'50%'} positionY={'40%'} />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5, y:400 }}
+        animate={{ opacity: 1, scale: 1, y:350 }}
+        transition={{
+          duration: 1,
+        }}
+      >
+        <MyLogo width='10%' positionX={'50%'} positionY={'40%'} /> 
+      </motion.div>
+
       <div className='input-group' style={groupStyle}>
         <input
           id='inputBox'
@@ -62,12 +70,11 @@ export default function Home() {
             inputElement!.style.borderColor="lightgray"
             inputElement!.style.borderWidth='3px'
             inputElement!.style.borderInlineEndWidth='0px'
-
-
         }} 
-
-
         >Go</Button>
+
+      
+
       </div>
 
     </>
