@@ -53,8 +53,8 @@ function App() {
 
   return (
 
-    <div className="ms-5 me-5">
-
+    <div className="">
+      
       <Navigation {...{ setID: setID }} />
 
       {/* main page content */}
