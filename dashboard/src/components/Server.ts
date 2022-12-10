@@ -11,6 +11,12 @@ export default class Server {
     this.endpoint = _endpoint // "/accounts" 
     this.baseURL = "https://api.up.com.au/api/v1"
   }
+
+  checkToken = async () => {
+    const result = await axios.get(this.baseURL + '/util/ping', { headers: { Authorization: 'Bearer ' + this.UP_TOKEN } })
+    return result
+  }
+
   // get token
   getToken() {
     return this.UP_TOKEN

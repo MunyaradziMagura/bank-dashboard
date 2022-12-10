@@ -1,14 +1,16 @@
 import MyLogo from '../components/Logo'
 import { useState, useEffect } from 'react'
+import Server from '../components/Server'
+
 import styled from 'styled-components'
 import { motion } from 'framer-motion';
 
 const groupStyle: any = {
-  left:'50%', 
-  top: '50%', 
-  position: 'absolute', 
-  transform: 'translate(-50%, -50%)', 
-  maxWidth:'30%'
+  left: '50%',
+  top: '50%',
+  position: 'absolute',
+  transform: 'translate(-50%, -50%)',
+  maxWidth: '30%'
 }
 
 const Button = styled.button`
@@ -27,25 +29,27 @@ const Button = styled.button`
 
 
 export default function Home() {
-    const [keyCapture, setKeyCapture] = useState<string>('')
+  const [keyCapture, setKeyCapture] = useState<string>('')
 
-    useEffect(() => {
-        console.log(keyCapture)
-    }
-    ,[keyCapture])
-    
-    const inputElement = document.getElementById('inputBox');
+  async function checkUserToken(_token: string) {
+    console.log(keyCapture)
+    const connection = await new Server(_token, '/util/ping');
+    const response = connection.checkToken()
+    console.log(response)
+  }
+
+  const inputElement = document.getElementById('inputBox');
 
   return (
     <>
       <motion.div
-        initial={{ opacity: 0, scale: 0.5, y:400 }}
-        animate={{ opacity: 1, scale: 1, y:350 }}
+        initial={{ opacity: 0, scale: 0.5, y: 400 }}
+        animate={{ opacity: 1, scale: 1, y: 350 }}
         transition={{
           duration: 1,
         }}
       >
-        <MyLogo width='10%' positionX={'50%'} positionY={'40%'} /> 
+        <MyLogo width='10%' positionX={'50%'} positionY={'40%'} />
       </motion.div>
 
       <div className='input-group' style={groupStyle}>
@@ -55,25 +59,25 @@ export default function Home() {
           className="form-control"
           placeholder="Enter Api Key"
           aria-describedby="button-addon2"
-          style={{borderColor:'lightgray', borderWidth: '3px', borderInlineEndWidth: '0px', borderInlineEndColor: `${process.env.REACT_APP_UPORANGE}`}}
-          onKeyUpCapture={e => setKeyCapture(keyCapture + e.key)}
+          style={{ borderColor: 'lightgray', borderWidth: '3px', borderInlineEndWidth: '0px', borderInlineEndColor: `${process.env.REACT_APP_UPORANGE}` }}
+          onChange={e => setKeyCapture(keyCapture + e.target.value)}
         />
         <Button
           type="submit"
           id="button-addon2"
           onMouseEnter={() => {
-            inputElement!.style.borderColor=`${process.env.REACT_APP_UPORANGE}`
-            inputElement!.style.borderWidth='3px'
-
-        }} 
+            inputElement!.style.borderColor = `${process.env.REACT_APP_UPORANGE}`
+            inputElement!.style.borderWidth = '3px'
+          }}
           onMouseLeave={() => {
-            inputElement!.style.borderColor="lightgray"
-            inputElement!.style.borderWidth='3px'
-            inputElement!.style.borderInlineEndWidth='0px'
-        }} 
+            inputElement!.style.borderColor = "lightgray"
+            inputElement!.style.borderWidth = '3px'
+            inputElement!.style.borderInlineEndWidth = '0px'
+          }}
+          onClick={() => checkUserToken(keyCapture)}
         >Go</Button>
 
-      
+
 
       </div>
 
