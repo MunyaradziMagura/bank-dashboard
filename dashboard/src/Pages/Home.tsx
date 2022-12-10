@@ -38,7 +38,6 @@ export default function Home() {
     // if response is valid then re-direct user to another page 
     if (response.status === 200) window.open(`${window.location.href}dashboard:${keyCapture}`)
 
-
   }
 
   const inputElement = document.getElementById('inputBox');
