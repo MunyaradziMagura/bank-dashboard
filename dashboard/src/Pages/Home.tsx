@@ -32,10 +32,13 @@ export default function Home() {
   const [keyCapture, setKeyCapture] = useState<string>('')
 
   async function checkUserToken(_token: string) {
-    console.log(keyCapture)
     const connection = await new Server(_token, '/util/ping');
-    const response = connection.checkToken()
-    console.log(response)
+    const response = await connection.checkToken()
+
+    // if response is valid then re-direct user to another page 
+    if (response.status === 200) window.open(`${window.location.href}dashboard:${keyCapture}`)
+
+
   }
 
   const inputElement = document.getElementById('inputBox');
