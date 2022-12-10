@@ -6,9 +6,9 @@ import Navigation from './components/Navigation'
 import Transactions from './components/Transactions'
 import Charts from './components/Charts'
 import React from 'react';
+import { useParams } from 'react-router-dom';
 function App() {
-
-  const [id, setID] = useState<any>();  // this signifies the upbank API id 
+  const [id, setID] = useState<any>((useParams().api)?.substring(1));  // this signifies the upbank API id and remove the collen at the begining
   const [accountsList, setAccountsList] = useState<any>([]) // a list of all account names on the bank account 
   const [selectedAccountID, setSelectedAccountID] = useState<any>(0) // id of the selected account is set when the account div is clicked
   const [selectedAccountData, setSelectedAccountData] = useState<any>({}) // all data about a selected account
@@ -54,8 +54,8 @@ function App() {
   return (
 
     <div className="">
-      
-      <Navigation {...{ setID: setID }} />
+
+      {/* <Navigation {...{ setID: setID }} /> */}
 
       {/* main page content */}
       <div className="row">
