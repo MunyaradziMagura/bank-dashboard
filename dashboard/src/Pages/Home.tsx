@@ -1,5 +1,7 @@
+import "./styles.css";
+import "./styles.css";
 import MyLogo from '../components/Logo'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import Server from '../components/Server'
 
 import styled from 'styled-components'
@@ -42,26 +44,35 @@ export default function Home() {
 
   const inputElement = document.getElementById('inputBox');
 
+  useEffect(() => {
+    document.title = "Up | Home";  
+  }, []);
+
   return (
-    <>
+    <div style={{textAlign:"center"}}>
       <motion.div
-        initial={{ opacity: 0, scale: 0.5, y: 400 }}
-        animate={{ opacity: 1, scale: 1, y: 350 }}
+        initial={{ opacity: 0, scale: 0.5, y: window.screen.height*0.45}}
+        animate={{ opacity: 1, scale: 1, y: window.screen.height*0.35}}
         transition={{
           duration: 1,
         }}
-      >
-        <MyLogo width='10%' positionX={'50%'} positionY={'40%'} />
+        >
+        <MyLogo width='10%' minWidth='150px' />
       </motion.div>
 
-      <div className='input-group' style={groupStyle}>
+      <div className='input-group my-3' style={groupStyle}>
         <input
           id='inputBox'
           type="text"
           className="form-control"
           placeholder="Enter Api Key"
           aria-describedby="button-addon2"
-          style={{ borderColor: 'lightgray', borderWidth: '3px', borderInlineEndWidth: '0px', borderInlineEndColor: `${process.env.REACT_APP_UPORANGE}` }}
+          style={{ 
+            borderColor: 'lightgray', 
+            borderWidth: '3px', 
+            borderInlineEndWidth: '0px', 
+            borderInlineEndColor: `${process.env.REACT_APP_UPORANGE}`
+          }}
           onChange={e => setKeyCapture(keyCapture + e.target.value)}
         />
         <Button
@@ -78,13 +89,11 @@ export default function Home() {
           }}
           onClick={() => checkUserToken(keyCapture)}
         >Go</Button>
-
-
-
       </div>
-
-    </>
+      </div>
+    
   )
 }
+
 
 
