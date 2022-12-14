@@ -1,7 +1,5 @@
-import "./styles.css";
-import "./styles.css";
 import MyLogo from '../components/Logo'
-import { useState, useEffect, Fragment } from 'react'
+import { useState, useEffect } from 'react'
 import Server from '../components/Server'
 
 import styled from 'styled-components'
@@ -48,17 +46,29 @@ export default function Home() {
     document.title = "Up | Home";  
   }, []);
 
+  window.addEventListener("resize", resize);
+  var windowHeight = window.innerHeight;
+  function resize() {
+    windowHeight = window.innerHeight;
+    document.getElementById("demo")!.innerHTML = windowHeight.toString();
+  }
+
   return (
     <div style={{textAlign:"center"}}>
       <motion.div
-        initial={{ opacity: 0, scale: 0.5, y: window.screen.height*0.45}}
-        animate={{ opacity: 1, scale: 1, y: window.screen.height*0.35}}
-        transition={{
-          duration: 1,
-        }}
+          initial={{ opacity: 0, scale: 0.5, y: windowHeight * 0.5 }}
+          animate={{ opacity: 1, scale: 1, y: windowHeight * 0.4 }}
+          transition={{
+            duration: 1,
+          }}
+          style={{
+            position: 'relative'
+          }}
         >
-        <MyLogo width='10%' minWidth='150px' />
+          <MyLogo width='10%' minWidth='150px' />
       </motion.div>
+
+      <p>Window height <span id="demo">{windowHeight}</span></p>
 
       <div className='input-group my-3' style={groupStyle}>
         <input
