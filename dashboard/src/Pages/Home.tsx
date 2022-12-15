@@ -30,6 +30,7 @@ const Button = styled.button`
 
 export default function Home() {
   const [keyCapture, setKeyCapture] = useState<string>('')
+  const [logoWindowHeight, setLogoWindowHeight] = useState<any>(window.innerHeight)
 
   async function checkUserToken(_token: string) {
     const connection = await new Server(_token, '/util/ping');
@@ -43,29 +44,31 @@ export default function Home() {
   const inputElement = document.getElementById('inputBox');
 
   useEffect(() => {
-    document.title = "Up | Home";  
+    document.title = "Up | Home";
   }, []);
 
   window.addEventListener("resize", resize);
   var windowHeight = window.innerHeight;
   function resize() {
     windowHeight = window.innerHeight;
+    setLogoWindowHeight(windowHeight)
+
     document.getElementById("demo")!.innerHTML = windowHeight.toString();
   }
 
   return (
-    <div style={{textAlign:"center"}}>
+    <div style={{ textAlign: "center" }}>
       <motion.div
-          initial={{ opacity: 0, scale: 0.5, y: windowHeight * 0.5 }}
-          animate={{ opacity: 1, scale: 1, y: windowHeight * 0.4 }}
-          transition={{
-            duration: 1,
-          }}
-          style={{
-            position: 'relative'
-          }}
-        >
-          <MyLogo width='10%' minWidth='150px' />
+        initial={{ opacity: 0, scale: 0.5, y: logoWindowHeight * 0.5 }}
+        animate={{ opacity: 1, scale: 1, y: logoWindowHeight * 0.4 }}
+        transition={{
+          duration: 1,
+        }}
+        style={{
+          position: 'relative'
+        }}
+      >
+        <MyLogo width='10%' minWidth='150px' />
       </motion.div>
 
       <p>Window height <span id="demo">{windowHeight}</span></p>
@@ -77,10 +80,10 @@ export default function Home() {
           className="form-control"
           placeholder="Enter Api Key"
           aria-describedby="button-addon2"
-          style={{ 
-            borderColor: 'lightgray', 
-            borderWidth: '3px', 
-            borderInlineEndWidth: '0px', 
+          style={{
+            borderColor: 'lightgray',
+            borderWidth: '3px',
+            borderInlineEndWidth: '0px',
             borderInlineEndColor: `${process.env.REACT_APP_UPORANGE}`
           }}
           onChange={e => setKeyCapture(keyCapture + e.target.value)}
@@ -100,8 +103,8 @@ export default function Home() {
           onClick={() => checkUserToken(keyCapture)}
         >Go</Button>
       </div>
-      </div>
-    
+    </div>
+
   )
 }
 
