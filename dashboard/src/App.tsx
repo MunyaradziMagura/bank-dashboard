@@ -8,7 +8,7 @@ import Charts from './components/Charts'
 import React from 'react';
 import { useParams } from 'react-router-dom';
 function App() {
-  const [id, setID] = useState<string | undefined>((useParams().api)?.substring(1));  // this signifies the upbank API id and remove the collen at the begining
+  const [id, setID] = useState<string | null>(localStorage.getItem('ApiKey'));  // this signifies the upbank API id and remove the collen at the begining
   const [accountsList, setAccountsList] = useState<any>([]) // a list of all account names on the bank account 
   const [selectedAccountID, setSelectedAccountID] = useState<any>(0) // id of the selected account is set when the account div is clicked
   const [selectedAccountData, setSelectedAccountData] = useState<any>({}) // all data about a selected account
@@ -39,7 +39,6 @@ function App() {
   }
   useEffect(() => {
     UpBank(id, '/accounts', 'accounts')
-
   }, [id])
 
   useEffect(() => {

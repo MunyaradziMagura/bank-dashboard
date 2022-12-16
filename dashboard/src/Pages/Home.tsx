@@ -35,9 +35,15 @@ export default function Home() {
     const connection = await new Server(_token, '/util/ping');
     const response = await connection.checkToken()
 
-    // if response is valid then re-direct user to another page 
-    if (response.status === 200) window.open(`${window.location.href}dashboard:${keyCapture}`)
+    // if response is valid then re-direct user to the dashboard page 
+    if (response.status === 200) {
 
+      window.location.href = `${window.location.href}dashboard`
+
+      // save API key to local storage
+      localStorage.setItem('ApiKey', _token)
+
+    }
   }
 
   const inputElement = document.getElementById('inputBox');
