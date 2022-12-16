@@ -37,8 +37,18 @@ export default function Home() {
 
     // if response is valid then re-direct user to the dashboard page 
     if (response.status === 200) {
+      let urlArray = window.location.href.split('')
 
-      window.location.href = `${window.location.href}dashboard`
+      // check that the last character within the url is a /
+      if (urlArray[urlArray.length - 1] != '/') {
+        urlArray.forEach(e => {
+          if (urlArray[urlArray.length - 1] != '/') {
+            urlArray.pop()
+          }
+        })
+      }
+      // change current url to the new dashboard url
+      window.location.href = `${urlArray.join('')}dashboard`
 
       // save API key to local storage
       localStorage.setItem('ApiKey', _token)
@@ -49,7 +59,7 @@ export default function Home() {
   const inputElement = document.getElementById('inputBox');
 
   useEffect(() => {
-    document.title = "Up | Home";  
+    document.title = "Up | Home";
   }, []);
 
   window.addEventListener("resize", resize);
@@ -60,18 +70,18 @@ export default function Home() {
   }
 
   return (
-    <div style={{textAlign:"center"}}>
+    <div style={{ textAlign: "center" }}>
       <motion.div
-          initial={{ opacity: 0, scale: 0.5, y: windowHeight * 0.5 }}
-          animate={{ opacity: 1, scale: 1, y: windowHeight * 0.4 }}
-          transition={{
-            duration: 1,
-          }}
-          style={{
-            position: 'relative'
-          }}
-        >
-          <MyLogo width='10%' minWidth='150px' />
+        initial={{ opacity: 0, scale: 0.5, y: windowHeight * 0.5 }}
+        animate={{ opacity: 1, scale: 1, y: windowHeight * 0.4 }}
+        transition={{
+          duration: 1,
+        }}
+        style={{
+          position: 'relative'
+        }}
+      >
+        <MyLogo width='10%' minWidth='150px' />
       </motion.div>
 
       <p>Window height <span id="demo">{windowHeight}</span></p>
@@ -83,10 +93,10 @@ export default function Home() {
           className="form-control"
           placeholder="Enter Api Key"
           aria-describedby="button-addon2"
-          style={{ 
-            borderColor: 'lightgray', 
-            borderWidth: '3px', 
-            borderInlineEndWidth: '0px', 
+          style={{
+            borderColor: 'lightgray',
+            borderWidth: '3px',
+            borderInlineEndWidth: '0px',
             borderInlineEndColor: `${process.env.REACT_APP_UPORANGE}`
           }}
           onChange={e => setKeyCapture(keyCapture + e.target.value)}
@@ -106,8 +116,8 @@ export default function Home() {
           onClick={() => checkUserToken(keyCapture)}
         >Go</Button>
       </div>
-      </div>
-    
+    </div>
+
   )
 }
 
