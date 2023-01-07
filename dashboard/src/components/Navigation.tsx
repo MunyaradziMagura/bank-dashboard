@@ -1,24 +1,23 @@
 import React from 'react'
 import { ReactComponent as MyLogo } from './UpLogo.svg'
 
-type navigationProps = {
-  setID: any; // contains a mix of int and char
-}
 
-const Navigation: React.FC<navigationProps> = ({ setID }) => {
+const Navigation = ({ }) => {
   return (
-    <div className="row">
-      <nav className="navbar bg-light">
-        {/* navigation bar */}
-        <div className="container-fluid h-100">
-          {/* <h1 className="navbar-brand"> </h1> */}
-          <MyLogo style={{maxWidth: '5%'}}/>
-          <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Enter Up API code" aria-label="Search" onChange={(e) => setID(e.target.value)} />
-          </form>
+    <nav className="navbar navbar-expand-sm">
+      <div className="container-fluid">
+        <MyLogo style={{ maxWidth: '5%' }} />
+        <div className="p-2">
+          <div className="input-group">
+            <input type="text" className="form-control mx-auto w-50 " placeholder="Transaction" aria-label="Transaction" aria-describedby="button-addon2" />
+            <button className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+            <button className="btn btn-outline-info" type="button" data-bs-toggle="popover" title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Date</button>
+
+          </div>
         </div>
-      </nav>
-    </div>
+        <a href='/Home'>Log out</a>
+      </div>
+    </nav>
   )
 }
 
