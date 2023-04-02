@@ -1,7 +1,6 @@
 import MyLogo from '../components/Logo'
 import { useState, useEffect } from 'react'
 import Server from '../components/Server'
-
 import styled from 'styled-components'
 import { motion } from 'framer-motion';
 
@@ -90,15 +89,9 @@ export default function Home() {
         <input
           id='inputBox'
           type="text"
-          className="form-control"
+          className="form-control fancy-input"
           placeholder="Enter Api Key"
           aria-describedby="button-addon2"
-          style={{
-            borderColor: 'lightgray',
-            borderWidth: '3px',
-            borderInlineEndWidth: '0px',
-            borderInlineEndColor: `${process.env.REACT_APP_UPORANGE}`
-          }}
           onChange={e => setKeyCapture(keyCapture + e.target.value)}
         />
         <Button
