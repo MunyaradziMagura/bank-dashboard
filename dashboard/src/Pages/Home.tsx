@@ -1,8 +1,6 @@
-import MyLogo from '../components/Logo'
+import Logo from '../components/Logo'
 import { useState, useEffect } from 'react'
 import Server from '../components/Server'
-
-import styled from 'styled-components'
 import { motion } from 'framer-motion';
 
 const groupStyle: any = {
@@ -12,21 +10,6 @@ const groupStyle: any = {
   transform: 'translate(-50%, -50%)',
   maxWidth: '30%'
 }
-
-const Button = styled.button`
-    background: transparent;
-    border-radius: 5px;
-    border: 3px solid ${process.env.REACT_APP_UPORANGE};
-    color: ${process.env.REACT_APP_UPORANGE};
-    margin: 0 1em;
-    padding: 0.25em 1em;
-    &:hover {
-      background-color: ${process.env.REACT_APP_UPORANGE};
-      color: white;
-      cursor: pointer;
-    }
-`
-
 
 export default function Home() {
   const [keyCapture, setKeyCapture] = useState<string>('')
@@ -56,54 +39,26 @@ export default function Home() {
     }
   }
 
-  const inputElement = document.getElementById('inputBox');
+  const inputElement = document.getElementById('api-input');
 
   useEffect(() => {
     document.title = "Up | Home";
   }, []);
 
-  window.addEventListener("resize", resize);
-  var windowHeight = window.innerHeight;
-  function resize() {
-    windowHeight = window.innerHeight;
-    document.getElementById("demo")!.innerHTML = windowHeight.toString();
-  }
-
   return (
     <div style={{ textAlign: "center" }}>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5, y: windowHeight * 0.5 }}
-        animate={{ opacity: 1, scale: 1, y: windowHeight * 0.4 }}
-        transition={{
-          duration: 1,
-        }}
-        style={{
-          position: 'relative'
-        }}
-      >
-        <MyLogo width='10%' minWidth='150px' />
-      </motion.div>
-
-      <p>Window height <span id="demo">{windowHeight}</span></p>
+      <Logo />
 
       <div className='input-group my-3' style={groupStyle}>
         <input
-          id='inputBox'
+          id='api-input'
           type="text"
           className="form-control"
           placeholder="Enter Api Key"
-          aria-describedby="button-addon2"
-          style={{
-            borderColor: 'lightgray',
-            borderWidth: '3px',
-            borderInlineEndWidth: '0px',
-            borderInlineEndColor: `${process.env.REACT_APP_UPORANGE}`
-          }}
+          aria-describedby="go-button"
           onChange={e => setKeyCapture(keyCapture + e.target.value)}
         />
-        <Button
-          type="submit"
-          id="button-addon2"
+        <input type="submit" value="Go" id="go-button"
           onMouseEnter={() => {
             inputElement!.style.borderColor = `${process.env.REACT_APP_UPORANGE}`
             inputElement!.style.borderWidth = '3px'
@@ -114,7 +69,7 @@ export default function Home() {
             inputElement!.style.borderInlineEndWidth = '0px'
           }}
           onClick={() => checkUserToken(keyCapture)}
-        >Go</Button>
+        />
       </div>
     </div>
 
