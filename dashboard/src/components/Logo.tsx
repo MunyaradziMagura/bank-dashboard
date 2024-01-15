@@ -7,16 +7,16 @@ const StyledLogo = styled(motion.div)``;
 const Logo: React.FC = () => {
     return (
         <StyledLogo 
-            initial={{ opacity: 0, scale: 0.5, y: window.innerHeight * 0.5 }}
-            animate={{ opacity: 1, scale: 1, y: window.innerHeight * 0.4 }}
+            initial={{ opacity: 0, scale: 0.5, y: 1000}}
+            animate={{ opacity: 1, scale: 1, y: 0}}
             transition={{duration: 1}}>
             <svg
                 viewBox={`0 0 900 900`}
                 fill='#FF7A64'
                 style={{
-                    position: 'absolute',
-                    transform: 'translate(-50%, -50%)',
-                    minWidth: '150px',
+                    // position: 'fixed',
+                    // transform: 'translate(-50%, -50%)',
+                    // height: '150%',
                     fillOpacity: 0.5,
                 }}
             >
@@ -25,7 +25,6 @@ const Logo: React.FC = () => {
                 </path>
             </svg>
         </StyledLogo>
-
     )
 }
 

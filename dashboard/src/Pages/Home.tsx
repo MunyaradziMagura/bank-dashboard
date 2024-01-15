@@ -1,15 +1,6 @@
 import Logo from '../components/Logo'
 import { useState, useEffect } from 'react'
 import Server from '../components/Server'
-import { motion } from 'framer-motion';
-
-const groupStyle: any = {
-  left: '50%',
-  top: '50%',
-  position: 'absolute',
-  transform: 'translate(-50%, -50%)',
-  maxWidth: '30%'
-}
 
 export default function Home() {
   const [keyCapture, setKeyCapture] = useState<string>('')
@@ -46,31 +37,38 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <Logo />
-
-      <div className='input-group my-3' style={groupStyle}>
-        <input
-          id='api-input'
-          type="text"
-          className="form-control"
-          placeholder="Enter Api Key"
-          aria-describedby="go-button"
-          onChange={e => setKeyCapture(keyCapture + e.target.value)}
-        />
-        <input type="submit" value="Go" id="go-button"
-          onMouseEnter={() => {
-            inputElement!.style.borderColor = `${process.env.REACT_APP_UPORANGE}`
-            inputElement!.style.borderWidth = '3px'
-          }}
-          onMouseLeave={() => {
-            inputElement!.style.borderColor = "lightgray"
-            inputElement!.style.borderWidth = '3px'
-            inputElement!.style.borderInlineEndWidth = '0px'
-          }}
-          onClick={() => checkUserToken(keyCapture)}
-        />
+    <div>
+      <div className="logo-container">
+        <div style={{transform: 'translate(0, -25%)'}}>
+          <Logo />
+        </div>
       </div>
+      
+      <div className='input-container'>
+        <div className='input-group'>
+          <input
+            id='api-input'
+            type="text"
+            className="form-control"
+            placeholder="Enter Api Key"
+            aria-describedby="go-button"
+            onChange={e => setKeyCapture(keyCapture + e.target.value)}
+          />
+          <input type="submit" value="Go" id="go-button"
+            onMouseEnter={() => {
+              inputElement!.style.borderColor = `${process.env.REACT_APP_UPORANGE}`
+              inputElement!.style.borderWidth = '3px'
+            }}
+            onMouseLeave={() => {
+              inputElement!.style.borderColor = "lightgray"
+              inputElement!.style.borderWidth = '3px'
+              inputElement!.style.borderInlineEndWidth = '0px'
+            }}
+            onClick={() => checkUserToken(keyCapture)}
+          />
+        </div>
+      </div>
+      
     </div>
 
   )
