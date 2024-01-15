@@ -1,6 +1,7 @@
 import Logo from '../components/Logo'
 import { useState, useEffect } from 'react'
 import Server from '../components/Server'
+import { motion } from 'framer-motion';
 
 export default function Home() {
   const [keyCapture, setKeyCapture] = useState<string>('')
@@ -47,14 +48,22 @@ export default function Home() {
       <div className='input-container'>
         <div className='input-group'>
           <input
-            id='api-input'
             type="text"
-            className="form-control"
+            id='api-input'
             placeholder="Enter Api Key"
             aria-describedby="go-button"
             onChange={e => setKeyCapture(keyCapture + e.target.value)}
+            required
           />
-          <input type="submit" value="Go" id="go-button"
+
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            whileHover={{ scale: 1.3 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 17, duration: 1 }}
+          >
+            <input type="submit" value="Go" id="go-button"
             onMouseEnter={() => {
               inputElement!.style.borderColor = `${process.env.REACT_APP_UPORANGE}`
               inputElement!.style.borderWidth = '3px'
@@ -65,7 +74,9 @@ export default function Home() {
               inputElement!.style.borderInlineEndWidth = '0px'
             }}
             onClick={() => checkUserToken(keyCapture)}
-          />
+            />
+          </motion.div>
+
         </div>
       </div>
 
