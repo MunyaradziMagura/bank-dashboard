@@ -49,3 +49,15 @@ $app-color: #FF7A64;
   justify-content: center;
   overflow: hidden;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  opacity: 0.8;
+}
