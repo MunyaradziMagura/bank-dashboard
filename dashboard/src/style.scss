@@ -12,9 +12,7 @@ $app-color: #FF7A64;
 }
 
 .input-group {
-  width: 50%;
-  min-width: 480px;
-  max-width: 720px;
+  width: 480px;
 }
 
 #api-input {
@@ -43,8 +41,9 @@ $app-color: #FF7A64;
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
+  display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;

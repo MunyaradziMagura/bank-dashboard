@@ -14,9 +14,6 @@ const Logo: React.FC = () => {
                 viewBox={`0 0 900 900`}
                 fill='#FF7A64'
                 style={{
-                    // position: 'fixed',
-                    // transform: 'translate(-50%, -50%)',
-                    // height: '150%',
                     fillOpacity: 0.5,
                 }}
             >

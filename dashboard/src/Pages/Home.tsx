@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div>
       <div className="logo-container">
-        <div style={{transform: 'translate(0, -25%)'}}>
+        <div style={{width: '1680px', minWidth: '960px'}}>
           <Logo />
         </div>
       </div>
