@@ -29,10 +29,6 @@ $app-color: #FF7A64;
   outline-offset: 0px;
 }
 
-#go-button:focus-visible {    
-  box-shadow: 0 1px 2px rgba(21, 112, 239, .05), 0 0 0 4px #f9d9d2;
-}
-
 #go-button {
   background-color: transparent;
   border-top-right-radius: 5px;
@@ -49,6 +45,10 @@ $app-color: #FF7A64;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+}
+
+#go-button:focus-visible {    
+  box-shadow: 0 1px 2px rgba(21, 112, 239, .05), 0 0 0 4px #f9d9d2;
 }
 
 .logo-container {
@@ -74,3 +74,7 @@ footer {
   line-height: 20px;
   opacity: 0.8;
 }
+
+// * {
+//   border: 2px solid orange;
+// }

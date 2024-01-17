@@ -5,8 +5,6 @@ import Accounts from './components/Accounts'
 import Navigation from './components/Navigation'
 import Transactions from './components/Transactions'
 import Charts from './components/Charts'
-import React from 'react';
-import { useParams } from 'react-router-dom';
 function App() {
   const [id, setID] = useState<string | null>(localStorage.getItem('ApiKey'));  // this signifies the upbank API id and remove the collen at the begining
   const [accountsList, setAccountsList] = useState<any>([]) // a list of all account names on the bank account 
@@ -52,37 +50,35 @@ function App() {
 
   return (
 
-    <div className="">
-
-      {/* <Navigation {...{ setID: setID }} /> */}
+    <>
+      <Navigation {...{ setID: setID }} />
 
       {/* main page content */}
-      <div className="row">
-        <div className="row gy-3">
-          <div className="col">
-            {/* generates cards for each account */}
-            <div className="row row-cols-1 row-cols-md-3 g-4 text-center">
-              {accountsList.map((account: any) => (
-                <>
-                  <Accounts {...{ accountID: account[0], account: account[1], select: setSelectedAccountID }} />
-                  {console.log(account[0])}
-                </>
-              ))}
-            </div>
+      <div className="row" style={{ height: '1000px' }}>
+        <div className="col-8" style={{ border: '2px dotted orange' }}>
+          <div className="mb-1" style={{ backgroundColor: 'rgba(201, 76, 76, 0.3)' }}><Charts /></div>
+          {/* generates cards for each account */}
+          <div className="row mb-1" style={{ backgroundColor: 'rgba(201, 176, 76, 0.3)' }}>
+            {accountsList.map((account: any) => (
+              <>
+                <Accounts {...{ accountID: account[0], account: account[1], select: setSelectedAccountID }} />
+                {console.log(account[0])}
+              </>
+            ))}
+          </div>
+          <div className="mb-1" style={{ backgroundColor: 'rgba(300, 76, 76, 0.3)' }}><h1>Weekly Transactions</h1><Transactions transactionData={transactionsByAccount} /></div>
+        </div>
+
+        <div className="col-4 p-0" style={{ border: '2px dotted purple' }}>
+          <div style={{ height: '100px', border: '2px dotted blue' }}>
 
           </div>
-          <div className="col-12">
-            <div className="p-3 border bg-light">
-              <div className="row">
-                <div className="col-4"><h1>Weekly Transactions</h1><Transactions transactionData={transactionsByAccount} /></div>
-                <div className="col-8"><Charts /></div>
-              </div>
+          <div style={{ height: '500px', border: '2px dotted green' }}>
 
-            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
 
   );
 }

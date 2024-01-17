@@ -7,17 +7,11 @@ type navigationProps = {
 
 const Navigation: React.FC<navigationProps> = ({ setID }) => {
   return (
-    <div className="row">
-      <nav className="navbar bg-light">
-        {/* navigation bar */}
-        <div className="container-fluid h-100">
-          {/* <h1 className="navbar-brand"> </h1> */}
-          <MyLogo style={{maxWidth: '5%'}}/>
-          <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Enter Up API code" aria-label="Search" onChange={(e) => setID(e.target.value)} />
-          </form>
-        </div>
-      </nav>
+    <div className="navbar p-2 m-0 border-0" style={{ position: 'sticky', top: 0, backgroundColor: 'lightcyan'}}>
+      <MyLogo style={{ maxWidth: '5%' }} />
+      <form className="d-flex" role="search">
+        <input className="form-control" type="search" placeholder="Enter Up API code" aria-label="Search" onChange={(e) => setID(e.target.value)} />
+      </form>
     </div>
   )
 }
