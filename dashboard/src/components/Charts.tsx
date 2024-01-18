@@ -10,7 +10,7 @@ export default function Charts() {
   </div>
     <div className="row">
       <div className="col-8">Total Expenses Line chart here </div>
-      <div className="col-4">expenses donut chart here</div>
+      <div className="col-4">Expenses donut chart here</div>
     </div>
     </>
   )

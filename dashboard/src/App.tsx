@@ -57,24 +57,28 @@ function App() {
       <div className="row" style={{ height: '1000px' }}>
         <div className="col-8" style={{ border: '2px dotted orange' }}>
           <div className="mb-1" style={{ backgroundColor: 'rgba(201, 76, 76, 0.3)' }}><Charts /></div>
-          {/* generates cards for each account */}
-          <div className="row mb-1" style={{ backgroundColor: 'rgba(201, 176, 76, 0.3)' }}>
-            {accountsList.map((account: any) => (
-              <>
-                <Accounts {...{ accountID: account[0], account: account[1], select: setSelectedAccountID }} />
-                {console.log(account[0])}
-              </>
-            ))}
-          </div>
+
           <div className="mb-1" style={{ backgroundColor: 'rgba(300, 76, 76, 0.3)' }}><h1>Weekly Transactions</h1><Transactions transactionData={transactionsByAccount} /></div>
         </div>
 
         <div className="col-4 p-0" style={{ border: '2px dotted purple' }}>
-          <div style={{ height: '100px', border: '2px dotted blue' }}>
-
+          <div className="overview-container" style={{ border: '2px dotted blue' }}>
+            <h2>Total Net Worth</h2>
+            <h3>999999999</h3>
+            <h2>Average Monthly Expences</h2>
+            <h3>99999</h3>
           </div>
-          <div style={{ height: '500px', border: '2px dotted green' }}>
-
+          <div style={{ border: '2px dotted green' }}>
+            <h2>Accounts</h2>
+            {/* generates cards for each account */}
+            <div className="mb-1" style={{ backgroundColor: 'rgba(201, 176, 76, 0.3)' }}>
+              {accountsList.map((account: any) => (
+                <>
+                  <Accounts {...{ accountID: account[0], account: account[1], select: setSelectedAccountID }} />
+                  {console.log(account[0])}
+                </>
+              ))}
+            </div>
           </div>
         </div>
       </div>

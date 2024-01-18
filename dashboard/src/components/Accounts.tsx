@@ -10,7 +10,7 @@ type UserProps = {
 const Accounts: React.FC<UserProps> = ({ account, select, accountID }) => {
 
   return (
-    <div className="col" onClick={() => select(accountID)} style={{ width: '20rem', height: '20rem' }}>
+    <div className="col" onClick={() => select(accountID)} style={{ height: '15rem' }}>
       <div className="card h-100 bg-secondary">
         <MyLogo />
         <div className="card-img-overlay">

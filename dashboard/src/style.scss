@@ -75,6 +75,37 @@ footer {
   opacity: 0.8;
 }
 
+.charts-container {
+
+}
+
+.overview-container {
+  padding: 5px;
+  text-align: center;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: lightcyan;
+  z-index: 10;
+  display: flex;
+  // justify-content: space-between;
+  height: 80px;
+  min-width: 600px;
+}
+
+.search-box {
+  float: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: right;
+  width: 500px;
+}
+
+
 // * {
 //   border: 2px solid orange;
 // }

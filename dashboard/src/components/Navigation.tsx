@@ -7,10 +7,12 @@ type navigationProps = {
 
 const Navigation: React.FC<navigationProps> = ({ setID }) => {
   return (
-    <div className="navbar p-2 m-0 border-0" style={{ position: 'sticky', top: 0, backgroundColor: 'lightcyan'}}>
-      <MyLogo style={{ maxWidth: '5%' }} />
+    <div className="navbar p-2 m-0 border-0">
+      <MyLogo style={{ height: '100%' }} />
       <form className="d-flex" role="search">
-        <input className="form-control" type="search" placeholder="Enter Up API code" aria-label="Search" onChange={(e) => setID(e.target.value)} />
+        <input className="search-box" />
+        <div style={{width: '100px', backgroundColor: 'red'}}>date</div>
+        <div style={{width: '50px', backgroundColor: 'pink'}}>filter</div>
       </form>
     </div>
   )
